@@ -16,6 +16,13 @@ class EntriesTableViewController: UITableViewController, NSFetchedResultsControl
         
         tableView.reloadData()
     }
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        entryController.fetchEntriesFromServer { (_) in
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+            }
+        }
+    }
     
     // MARK: - Table view data source
     
@@ -111,6 +118,7 @@ class EntriesTableViewController: UITableViewController, NSFetchedResultsControl
             guard let destinationVC = segue.destination as? EntryDetailViewController,
                 let indexPath = tableView.indexPathForSelectedRow else { return }
             
+            destinationVC.entryController = entryController
             destinationVC.entry = fetchedResultsController.object(at: indexPath)
             
         default:
