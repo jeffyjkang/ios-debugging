@@ -66,13 +66,14 @@ class EntryDetailViewController: UIViewController {
         moodSegmentedControl.selectedSegmentIndex = segmentIndex
     }
     
-    var entry: Entry? {
-        didSet {
-            updateViews()
-        }
-    }
+//    var entry: Entry? {
+//        didSet {
+//            updateViews()
+//        }
+//    }
     
     var entryController: EntryController?
+    var entry: Entry?
     
     @IBOutlet weak var moodSegmentedControl: UISegmentedControl!
     @IBOutlet weak var titleTextField: UITextField!
